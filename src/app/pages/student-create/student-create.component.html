@@ -1,0 +1,66 @@
+<section
+   class="d-flex justify-content-center align-items-center clean-block clean-form dark"
+   style="background: rgb(255, 255, 255)"
+>
+   <div class="container">
+      <div class="block-heading" style="margin-top: 39px">
+         <h2 class="text-info">Create Student</h2>
+         <p>
+            Create a student with MongoDB CRUD and check the all students
+            section to see new students.
+         </p>
+      </div>
+      <form #studentForm="ngForm" (ngSubmit)="createStudent(studentForm)">
+         <div class="d-flex flex-row mb-3">
+            <div style="margin-right: 16px">
+               <label class="form-label" for="name">Name</label>
+               <input
+                  id="name"
+                  class="form-control"
+                  type="text"
+                  name="name"
+                  ngModel
+               />
+            </div>
+            <div class="mb-3">
+               <label class="form-label" for="subject">Cohort</label>
+               <input
+                  id="cohort"
+                  class="form-control"
+                  type="text"
+                  name="cohort"
+                  ngModel
+               />
+            </div>
+         </div>
+         <div class="mb-3">
+            <label class="form-label" for="email">Email</label>
+            <input
+               id="email"
+               class="form-control"
+               type="email"
+               name="email"
+               ngModel
+            />
+         </div>
+         <div class="mb-3">
+            <label class="form-label" for="message">Phone Number</label>
+            <input
+               id="phoneNumber"
+               class="form-control"
+               type="tel"
+               name="phoneNumber"
+               ngModel
+            />
+         </div>
+         <div class="mb-3">
+            <button class="btn btn-primary" type="submit">Create</button>
+         </div>
+      </form>
+      <div class="mx-auto mt-4" style="width: 38%">
+         <button class="btn btn-primary" onclick="history.back()">
+            Go Back
+         </button>
+      </div>
+   </div>
+</section>

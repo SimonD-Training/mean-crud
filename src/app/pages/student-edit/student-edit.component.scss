@@ -1,0 +1,17 @@
+$edit-color: orange;
+
+.text-edit {
+   color: $edit-color !important;
+}
+
+.border-color-edit {
+   border-color: $edit-color !important;
+}
+
+.bg-edit {
+   background-color: $edit-color !important;
+
+   &:hover {
+      background-color: darken($edit-color, 5) !important;
+   }
+}

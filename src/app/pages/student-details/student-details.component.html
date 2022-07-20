@@ -1,0 +1,41 @@
+<section class="card-wrapper">
+   <div>
+      <div class="card mb-3" style="max-width: 540px">
+         <div class="row g-0">
+            <div class="col-md-4">
+               <img
+                  src="https://images.g2crowd.com/uploads/product/image/large_detail/large_detail_f0b606abb6d19089febc9faeeba5bc05/nodejs-development-services.png"
+                  class="img-fluid rounded-start"
+                  alt="Student Image"
+               />
+            </div>
+            <div class="col-md-8">
+               <!-- Students Loading -->
+               <div class="spinner" *ngIf="isLoading">
+                  <div class="spinner-border text-primary" role="status">
+                     <span class="visually-hidden">Loading...</span>
+                  </div>
+               </div>
+
+               <div *ngIf="isLoading == false" class="card-body">
+                  <h5 class="card-title" style="font-weight: bold">
+                     {{ student[0].name }}
+                  </h5>
+                  <p class="card-text">
+                     <span style="font-weight: 600">Email:</span>
+                     {{ student[0].email }}<br />
+                     <span style="font-weight: 600">Cohort:</span>
+                     {{ student[0].cohort }}<br />
+                     <span style="font-weight: 600">Phone Number:</span>
+                     {{ student[0].phoneNumber }}<br />
+                  </p>
+                  <p class="card-text">
+                     <small class="text-muted">{{ student[0]._id }}</small>
+                  </p>
+               </div>
+            </div>
+         </div>
+      </div>
+      <button class="btn btn-primary" onclick="history.back()">Go Back</button>
+   </div>
+</section>
