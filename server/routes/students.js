@@ -3,16 +3,34 @@ const router = express.Router();
 
 const Student = require("../models/Student");
 
-// Create Student
-router.post("/create", async (req, res) => {
+// Create Student Promise
+router.post("/create", (req, res) => {
+   const cohort = `Cohort ${req.body.cohort}`;
    const studentModel = new Student({
       name: req.body.name,
       email: req.body.email,
-      cohort: req.body.cohort,
+      cohort: cohort,
+      phoneNumber: req.body.phoneNumber,
+   });
+
+   studentModel.save().then((savedStudent) => {
+      res.json(savedStudent);
+   });
+});
+
+// Create2 Student Async
+router.post("/create2", async (req, res) => {
+   const cohort = `Cohort ${req.body.cohort}`;
+
+   const studentModel = new Student({
+      name: req.body.name,
+      email: req.body.email,
+      cohort: cohort,
       phoneNumber: req.body.phoneNumber,
    });
 
    const savedStudent = await studentModel.save();
+
    res.json(savedStudent);
 });
 
@@ -27,20 +45,20 @@ router.get("/find", async (req, res) => {
    /**
     * Find document via query params `name` or `objectId`
     * Query Strings
-    * ?by=name&name=
-    * ?by=id&id=
+    * ?by=name&q=
+    * ?by=id&q=
     */
 
    const getByQuery = req.query.by;
-   const searchArray = [req.query.name, req.query.id];
+   const queryParam = req.query.q;
    let students = [];
 
    // Switch based on the search query passed
    switch (getByQuery) {
       case "name":
-         const nameQuery = searchArray[0];
+         const nameQuery = queryParam;
          students = await Student.find({
-            $text: { $search: nameQuery, $caseSensitive: false },
+            name: new RegExp(`${nameQuery}`, "gi"),
          });
 
          if (!students) res.json({ message: "Student Not Found" });
@@ -48,7 +66,7 @@ router.get("/find", async (req, res) => {
          res.json(students);
          break;
       case "id":
-         const idQuery = searchArray[1];
+         const idQuery = queryParam;
          students = await Student.findById(idQuery);
 
          if (students.length < 0) res.json({ message: "Student Not Found" });

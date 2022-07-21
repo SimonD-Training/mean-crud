@@ -22,6 +22,11 @@ export class StudentService {
          );
    }
 
+   /**
+    *
+    * @param studentId
+    * @returns
+    */
    getStudent(studentId: string): Observable<Student> {
       return this.http
          .get<Student>(
