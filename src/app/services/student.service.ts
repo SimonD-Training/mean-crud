@@ -22,12 +22,12 @@ export class StudentService {
          );
    }
 
-   getStudent(studentId: string): Observable<Student[]> {
+   getStudent(studentId: string): Observable<Student> {
       return this.http
-         .get<Student[]>(
+         .get<Student>(
             `${environment.apiUrl}/students/find?by=id&id=${studentId}`
          )
-         .pipe(tap((student: Student[]) => console.log('Student =', student)));
+         .pipe(tap((student: Student) => console.log('Student =', student)));
    }
 
    createStudent(postBody: any): Observable<Student[]> {
@@ -38,9 +38,9 @@ export class StudentService {
          );
    }
 
-   editStudent(studentId: string, postBody: any): Observable<Student[]> {
+   editStudent(studentId: string, postBody: any): Observable<Student> {
       return this.http
-         .put<Student[]>(
+         .put<Student>(
             `${environment.apiUrl}/students/update/${studentId}`,
             postBody
          )

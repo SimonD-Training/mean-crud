@@ -12,15 +12,13 @@ import { environment } from 'src/environments/environment';
 export class StudentDetailsComponent implements OnInit {
    apiUrl = environment.apiUrl;
    studentId = '';
-   student: Student[] = [
-      {
-         _id: '',
-         name: '',
-         email: '',
-         cohort: '',
-         phoneNumber: 0,
-      },
-   ];
+   student: Student = {
+      _id: '',
+      name: '',
+      email: '',
+      cohort: '',
+      phoneNumber: 0,
+   };
 
    isLoading: boolean = true;
 
@@ -34,8 +32,8 @@ export class StudentDetailsComponent implements OnInit {
          this.studentId = routerInfo.params.id;
 
          this.studentService.getStudent(this.studentId).subscribe({
-            next: (resp: Student[]) => {
-               this.student[0] = resp[0];
+            next: (resp: Student) => {
+               this.student = resp;
                this.isLoading = false;
             },
             error: (err) => console.log(err),

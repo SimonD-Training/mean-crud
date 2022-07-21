@@ -19,18 +19,18 @@
 
                <div *ngIf="isLoading == false" class="card-body">
                   <h5 class="card-title" style="font-weight: bold">
-                     {{ student[0].name }}
+                     {{ student.name }}
                   </h5>
                   <p class="card-text">
                      <span style="font-weight: 600">Email:</span>
-                     {{ student[0].email }}<br />
+                     {{ student.email }}<br />
                      <span style="font-weight: 600">Cohort:</span>
-                     {{ student[0].cohort }}<br />
+                     {{ student.cohort }}<br />
                      <span style="font-weight: 600">Phone Number:</span>
-                     {{ student[0].phoneNumber }}<br />
+                     {{ student.phoneNumber }}<br />
                   </p>
                   <p class="card-text">
-                     <small class="text-muted">{{ student[0]._id }}</small>
+                     <small class="text-muted">{{ student._id }}</small>
                   </p>
                </div>
             </div>
