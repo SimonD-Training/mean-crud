@@ -40,15 +40,14 @@ router.get("/", async (req, res) => {
    res.json(student);
 });
 
-// Find One Student
+/**
+ * Find One Student
+ * Find document via query params `name` or `objectId`
+ * Query Strings
+ * ?by=name&q=
+ * ?by=id&q=
+ */
 router.get("/find", async (req, res) => {
-   /**
-    * Find document via query params `name` or `objectId`
-    * Query Strings
-    * ?by=name&q=
-    * ?by=id&q=
-    */
-
    const getByQuery = req.query.by;
    const queryParam = req.query.q;
    let students = [];
@@ -62,16 +61,14 @@ router.get("/find", async (req, res) => {
          });
 
          if (!students) res.json({ message: "Student Not Found" });
-
-         res.json(students);
+         else res.json(students);
          break;
       case "id":
          const idQuery = queryParam;
          students = await Student.findById(idQuery);
 
          if (students.length < 0) res.json({ message: "Student Not Found" });
-
-         res.json(students);
+         else res.json(students);
          break;
       default:
          res.json({ message: "No Students Found..." });
@@ -79,31 +76,38 @@ router.get("/find", async (req, res) => {
    }
 });
 
-// Update One Student
+// Update Student
 router.put("/update/:id", async (req, res) => {
+   // this student found from the id in the url
    const oldStudent = await Student.findOneAndUpdate(
       { _id: req.params.id },
       req.body
    );
-   const updatedStudent = await Student.findOne({ _id: req.params.id });
+
+   const updatedStudent = await Student.findOne({ _id: req.params.id }); // get updated student to return as json
 
    if (oldStudent) {
-      return res.json({ message: "success", oldStudent, updatedStudent });
+      return res.json({
+         message: "success",
+         oldStudent: oldStudent,
+         updatedStudent,
+      });
+   } else {
+      res.json({ message: "No Student Found..." });
    }
-
-   res.json({ message: "No Student Found..." });
 });
 
-// Delete One Student
+// Delete Student
 router.delete("/delete/:id", async (req, res) => {
    const deletedStudent = await Student.findOneAndDelete({
       _id: req.params.id,
    });
+
    if (deletedStudent) {
       return res.json({ message: "success", deletedStudent });
+   } else {
+      res.json({ message: "No Student Found..." });
    }
-
-   res.json({ message: "No Student Found..." });
 });
 
 module.exports = router;
