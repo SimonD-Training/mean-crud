@@ -23,8 +23,9 @@ const StudentAccSchema = new mongoose.Schema(
          required: true,
       },
       student_id: {
-         type: String,
+         type: mongoose.Types.ObjectId,
          required: true,
+         ref: "Students"
       },
    },
    { collection: "student_accs" }
