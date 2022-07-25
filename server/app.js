@@ -17,6 +17,7 @@ app.get("/", (req, res) =>
 
 // Routes
 app.use("/students", require("./routes/students"));
+app.use("/student", require("./routes/student"));
 
 // Start Express App
 mongoose.connect(process.env.MONGODB_URI, { useNewUrlParser: true }, (err) => {

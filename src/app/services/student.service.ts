@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Student } from '../interfaces/student';
+import { Student, StudentAcc } from '../interfaces/student';
 
 @Injectable({
    providedIn: 'root',
@@ -28,6 +28,16 @@ export class StudentService {
          `${environment.apiUrl}/students/find?by=id&q=${studentId}`
       );
    }
+   /**
+    *
+    * @param studentId
+    * @returns
+    */
+   getStudentAcc(studentId: string): Observable<StudentAcc> {
+      return this.http.get<StudentAcc>(
+         `${environment.apiUrl}/student/${studentId}`
+      );
+   }
 
    /**
     * Create a student documnet and add them to the MongoDB
@@ -36,6 +46,16 @@ export class StudentService {
    createStudent(postBody: any): Observable<Student[]> {
       return this.http.post<Student[]>(
          `${environment.apiUrl}/students/create`,
+         postBody
+      );
+   }
+   /**
+    * Create a student account documnet and add them to the MongoDB
+    * @param postBody The FormData used to create a studentAcc
+    */
+   createStudentAcc(postBody: any): Observable<StudentAcc[]> {
+      return this.http.post<StudentAcc[]>(
+         `${environment.apiUrl}/student/create_acc`,
          postBody
       );
    }

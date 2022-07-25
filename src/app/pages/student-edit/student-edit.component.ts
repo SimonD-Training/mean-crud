@@ -11,7 +11,6 @@ import { environment } from 'src/environments/environment';
    styleUrls: ['./student-edit.component.scss'],
 })
 export class StudentEditComponent implements OnInit {
-   apiUrl = environment.apiUrl;
    studentId = '';
    student: Student = {
       _id: '',

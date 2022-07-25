@@ -12,6 +12,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { StudentEditComponent } from './pages/student-edit/student-edit.component';
 import { StudentDetailsComponent } from './pages/student-details/student-details.component';
+import { BankComponent } from './pages/bank/bank.component';
 
 @NgModule({
    declarations: [
@@ -23,6 +24,7 @@ import { StudentDetailsComponent } from './pages/student-details/student-details
       StudentEditComponent,
       StudentAllComponent,
       StudentDetailsComponent,
+      BankComponent,
    ],
    imports: [
       BrowserModule,
