@@ -1,4 +1,5 @@
 const express = require("express");
+const { default: mongoose } = require("mongoose");
 const router = express.Router();
 
 const StudentAcc = require("../models/StudentAcc");
@@ -34,7 +35,7 @@ router.post("/create_acc", (req, res) => {
 
 router.get("/:id", (req, res) => {
    let id = req.params.id;
-   StudentAcc.findOne({student_id: id}).then((value) => {
+   StudentAcc.findOne({student_id: new mongoose.Types.ObjectId(id)}).then((value) => {
       res.json(value);
    });
 });

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Student } from 'src/app/interfaces/student';
+import { Student, StudentAcc } from 'src/app/interfaces/student';
 import { StudentService } from 'src/app/services/student.service';
 import { environment } from 'src/environments/environment';
 
@@ -19,6 +19,7 @@ export class StudentDetailsComponent implements OnInit {
       cohort: '',
       phoneNumber: 0,
    };
+   studentAcc!: StudentAcc;
 
    isLoading: boolean = true;
 
@@ -35,6 +36,14 @@ export class StudentDetailsComponent implements OnInit {
             next: (resp: Student) => {
                this.student = resp;
                this.isLoading = false;
+               this.studentService
+                  .getStudentAcc(this.studentId)
+                  .subscribe({ next: (data) => {
+                     this.studentAcc = data;
+                     console.log(data);                     
+                  }, error: (err) => {
+                     console.error(err);
+                  } });
             },
             error: (err) => console.log(err),
          });
