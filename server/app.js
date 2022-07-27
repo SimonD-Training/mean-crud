@@ -8,11 +8,11 @@ const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use(cors(["*", "http://localhost:4200"]));
+app.use(cors(["*"]));
 
 // API Root Route
 app.get("/", (req, res) =>
-   res.json({ message: "Hello, World! 👋", version: "v0.1.0" })
+   res.json({ message: "Hello, World! 👋", version: "v0.1.2" })
 );
 
 // Routes
