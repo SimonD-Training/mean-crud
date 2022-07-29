@@ -47,7 +47,7 @@ export class BankComponent implements OnInit {
          account_num: formData.controls['account_num'].value,
          account_type: formData.controls['account_type'].value,
          status: formData.controls['status'].value,
-         student_id: formData.controls['student_id'].value,
+         student_id: this.id,
       };
 
       this.studentService.createStudentAcc(postBody).subscribe({
